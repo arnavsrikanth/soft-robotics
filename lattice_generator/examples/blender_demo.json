@@ -1,0 +1,102 @@
+{
+  "generator_version": "0.1.0",
+  "created_utc": "2026-10-28T04:52:22.005491+00:00",
+  "units": "mm",
+  "settings": {
+    "pattern": "octet",
+    "size": [
+      12.0,
+      12.0,
+      12.0
+    ],
+    "cell-size": 6.0,
+    "strut-diameter": 1.2,
+    "wall-thickness": null,
+    "base-thickness": 0.0,
+    "resolution": null,
+    "memory-limit-mib": 2048.0
+  },
+  "meshing": {
+    "grid_shape": [
+      63,
+      63,
+      63
+    ],
+    "spacing_mm": [
+      0.19672131147540983,
+      0.19672131147540983,
+      0.19672131147540983
+    ],
+    "gyroid_halo": [
+      0,
+      0,
+      0
+    ],
+    "estimated_memory_mib": 93.17300415039062,
+    "estimated_edges_upper_bound": 16464,
+    "struts": 540
+  },
+  "phase": {
+    "cell_fractions": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "convention": "strut translation; gyroid coordinate offset in its equation"
+  },
+  "geometric_tolerance_mm": 0.39344262295081966,
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "finite_coordinates": true,
+    "degenerate_triangles": 0,
+    "watertight": true,
+    "consistent_winding": true,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "nonmanifold_vertices": 0,
+    "connected_components": 1,
+    "component_triangle_counts": [
+      158680
+    ],
+    "bounds_mm": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        12.0,
+        12.0,
+        12.0
+      ]
+    ],
+    "occupied_size_mm": [
+      12.0,
+      12.0,
+      12.0
+    ],
+    "volume_mm3": 648.1813975605502,
+    "surface_area_mm2": 2070.3248511695465,
+    "vertices": 78986,
+    "triangles": 158680
+  },
+  "stl_round_trip_validated": true,
+  "elapsed_seconds": 4.002142800018191,
+  "dependencies": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-image": "0.26.0",
+    "trimesh": "5.2.0"
+  },
+  "files": {
+    "stl": "C:\\Users\\21arn\\Documents\\CMU\\24-673 Soft Robots\\lattice_generator\\examples\\blender_demo.stl",
+    "report": "C:\\Users\\21arn\\Documents\\CMU\\24-673 Soft Robots\\lattice_generator\\examples\\blender_demo.json",
+    "blend": "C:\\Users\\21arn\\Documents\\CMU\\24-673 Soft Robots\\lattice_generator\\examples\\blender_demo.blend"
+  },
+  "notes": [
+    "STL has no unit metadata; numeric coordinates are millimeters.",
+    "Grid meshing approximates surfaces; actual occupied bounds may be smaller than the clipping box.",
+    "Geometric validation does not establish support-free printability."
+  ]
+}

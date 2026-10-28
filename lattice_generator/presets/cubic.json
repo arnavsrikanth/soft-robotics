@@ -1,0 +1,7 @@
+{
+  "pattern": "cubic",
+  "size": [24, 24, 18],
+  "cell-size": 6,
+  "strut-diameter": 1.2,
+  "output": "../examples/cubic.stl"
+}

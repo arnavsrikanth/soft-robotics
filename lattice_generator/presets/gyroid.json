@@ -1,0 +1,8 @@
+{
+  "pattern": "gyroid",
+  "size": [24, 24, 18],
+  "cell-size": 6,
+  "wall-thickness": 1.2,
+  "base-thickness": 1.2,
+  "output": "../examples/gyroid.stl"
+}
