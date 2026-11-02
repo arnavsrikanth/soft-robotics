@@ -7,4 +7,4 @@ build/
 dist/
 *.stl
 *.gcode
-*.gcode.3mf
+*.3mf
