@@ -40,14 +40,19 @@ def motif(pattern):
     raise ValueError(f"No strut motif for {pattern!r}")
 
 
-def segments(pattern, size, cell_size, radius=0.0):
+def segments(pattern, size, cell_size, radius=0.0, lattice_offset=(0.0, 0.0, 0.0)):
     """Unique undirected edges, including neighbors whose rounded struts enter the box."""
     template = motif(pattern)
     scale = cell_size / 4
-    shift = np.array(PHASES[pattern]) * cell_size
+    shift = np.array(PHASES[pattern]) * cell_size + np.asarray(lattice_offset)
     lower = (-radius - shift) / scale
     upper = (np.array(size) + radius - shift) / scale
-    ranges = [range(math.floor(-radius / cell_size) - 1, math.ceil((s + radius) / cell_size) + 2) for s in size]
+    # Translate cell enumeration as well as vertices, including motifs extending
+    # beyond their own cell. Large offsets must not lose neighboring segments.
+    template_min = template.min(axis=(0, 1))
+    template_max = template.max(axis=(0, 1))
+    ranges = [range(math.ceil((lo-hi_m)/4), math.floor((hi-lo_m)/4)+1)
+              for lo, hi, lo_m, hi_m in zip(lower, upper, template_min, template_max)]
     edges = set()
     for ijk in product(*ranges):
         block = template + 4 * np.array(ijk)

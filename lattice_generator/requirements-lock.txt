@@ -14,3 +14,6 @@ scipy==1.18.1
 setuptools==84.2.1
 tifffile==2026.10.15
 trimesh==5.2.0
+
+fast-simplification==0.2.0
+rtree==1.4.1

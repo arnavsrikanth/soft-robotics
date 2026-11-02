@@ -5,3 +5,6 @@ __pycache__/
 .pytest_cache/
 build/
 dist/
+*.stl
+*.gcode
+*.gcode.3mf

@@ -1,0 +1,14 @@
+{
+  "pattern": "bcc",
+  "size": [
+    36,
+    36,
+    18
+  ],
+  "cell-size": 6,
+  "strut-diameter": 1.2,
+  "base-thickness": 0,
+  "pockets": "four",
+  "output": "../../examples/paired/bcc_pockets.stl",
+  "mesh-above-pockets": 2
+}

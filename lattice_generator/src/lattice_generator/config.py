@@ -22,6 +22,19 @@ class Settings:
     base_thickness: float = 0.0
     resolution: float | None = None
     memory_limit_mib: float = 2048.0
+    pockets: str = "none"
+    magnet_diameter: float = 10.0
+    magnet_thickness: float = 2.7
+    pocket_diameter_clearance: float = 0.3
+    pocket_height_clearance: float = 0.2
+    pocket_wall_thickness: float = 1.0
+    pocket_floor_thickness: float = 1.0
+    pocket_roof_thickness: float = 1.0
+    mesh_above_pockets: float | None = None
+    pocket_midplane_height: float | None = None
+    require_exact_bounds: bool = False
+    simplify_tolerance: float = 0.05
+    lattice_offset: tuple[float, float, float] = (0.0, 0.0, 0.0)
 
     @property
     def feature_thickness(self):
@@ -32,9 +45,42 @@ class Settings:
         thickness = self.feature_thickness
         if self.base_thickness:
             thickness = min(thickness, self.base_thickness)
+        if self.pockets == "four":
+            thickness = min(thickness, self.pocket_wall_thickness, self.pocket_floor_thickness,
+                            self.pocket_roof_thickness, self.magnet_thickness + self.pocket_height_clearance,
+                            self.magnet_diameter + self.pocket_diameter_clearance)
         return self.resolution or min(0.2, thickness / 6, self.cell_size / 24)
 
     def check(self):
+        offset = self.lattice_offset
+        if (not isinstance(offset, (list, tuple)) or len(offset) != 3 or
+                any(isinstance(v, bool) or not isinstance(v, (int, float)) or
+                    not math.isfinite(v) for v in offset)):
+            raise LatticeError("lattice-offset must contain three finite numeric values in millimeters.")
+        if self.pattern == "gyroid" and any(offset):
+            raise LatticeError("Nonzero lattice-offset is supported only for strut patterns, not gyroid.")
+        value = self.simplify_tolerance
+        if isinstance(value, bool) or not isinstance(value, (int,float)) or not math.isfinite(value) or value < 0:
+            raise LatticeError("simplify-tolerance must be finite and nonnegative; zero disables it.")
+        if self.pocket_midplane_height is not None:
+            if self.mesh_above_pockets is not None:
+                raise LatticeError("Specify only one pocket positioning option.")
+            value = self.pocket_midplane_height
+            if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
+                raise LatticeError("pocket-midplane-height must be finite and positive.")
+        if not isinstance(self.require_exact_bounds, bool):
+            raise LatticeError("require-exact-bounds must be boolean.")
+        value = self.mesh_above_pockets if self.mesh_above_pockets is not None else 2.0
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+            raise LatticeError("mesh-above-pockets must be a finite nonnegative number.")
+        if self.pockets not in ("none", "four"):
+            raise LatticeError("pockets must be 'none' or 'four'.")
+        for name in ("magnet_diameter", "magnet_thickness", "pocket_wall_thickness",
+                     "pocket_floor_thickness", "pocket_roof_thickness", "pocket_diameter_clearance", "pocket_height_clearance"):
+            value = getattr(self, name)
+            minimum_ok = value >= 0 if isinstance(value, (int, float)) and "clearance" in name else isinstance(value, (int, float)) and value > 0
+            if isinstance(value, bool) or not minimum_ok or not math.isfinite(value):
+                raise LatticeError(f"{name.replace('_', '-')} must be finite and {'nonnegative' if 'clearance' in name else 'positive'}.")
         if self.pattern not in PATTERNS:
             raise LatticeError(f"Unknown pattern {self.pattern!r}; choose {', '.join(PATTERNS)}.")
         if len(self.size) != 3:
@@ -61,6 +107,9 @@ class Settings:
             raise LatticeError("Unresolved cells: resolution must be at most cell-size / 16.")
         if self.feature_thickness >= self.cell_size:
             raise LatticeError("Feature thickness must be smaller than cell-size to preserve a lattice.")
+        if self.pockets == "four":
+            from .pockets import check_layout
+            check_layout(self)
         self.preflight()
         return self
 
@@ -78,6 +127,8 @@ class Settings:
         work_samples = math.prod(work_shape)
         # Conservative allocation allowance includes marching cubes and mesh validation.
         estimated = max(work_samples * 32 + samples * 16, samples * 96) + 64 * 1024**2
+        if self.pockets == "four":
+            estimated += samples * 16  # connected-material and enclosed-void labels
         estimated_edges = 0
         if self.pattern != "gyroid":
             motifs = {"cubic": 3, "bcc": 8, "octet": 48, "diamond": 16, "kelvin": 72}

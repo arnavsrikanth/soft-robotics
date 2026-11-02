@@ -1,0 +1,13 @@
+{
+  "pattern": "gyroid",
+  "size": [
+    36,
+    36,
+    18
+  ],
+  "cell-size": 6,
+  "wall-thickness": 1.2,
+  "base-thickness": 1.2,
+  "pockets": "none",
+  "output": "../../examples/paired/gyroid_plain.stl"
+}

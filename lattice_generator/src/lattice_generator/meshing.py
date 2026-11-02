@@ -21,7 +21,7 @@ def strut_field(settings, axes, log):
     radius = settings.strut_diameter / 2
     reach = radius + 2 * h
     field = np.full(tuple(map(len, axes)), 2 * h, dtype=np.float32)
-    edges = segments(settings.pattern, settings.size, settings.cell_size, reach)
+    edges = segments(settings.pattern, settings.size, settings.cell_size, reach, lattice_offset=settings.lattice_offset)
     log(f"Evaluating {len(edges):,} unique struts")
     for a, b in edges:
         slices = tuple(slice(np.searchsorted(axis, min(a[i], b[i]) - reach),
@@ -35,7 +35,7 @@ def strut_field(settings, axes, log):
         t = np.clip(t, 0, 1)
         dist = np.sqrt(sum((xyz[i] - a[i] - t * direction[i]) ** 2 for i in range(3))) - radius
         np.minimum(field[slices], dist, out=field[slices])
-    return field, {"struts": len(edges)}
+    return field, {"struts": len(edges), "lattice_offset_mm": list(settings.lattice_offset)}
 
 
 def gyroid_field(settings, axes, info, log):
@@ -76,10 +76,17 @@ def generate_mesh(settings, log=lambda message: None):
     if settings.base_thickness:
         plate = np.maximum(-z, z - settings.base_thickness)
         np.minimum(field, plate, out=field)
+    if settings.pockets == "four":
+        from .pockets import apply_pockets
+        log("Adding four holders and clearing sealed magnet cavities")
+        details["pockets"] = apply_pockets(field, axes, settings)
     # Negative material intersected with the exact requested clipping envelope.
     for axis, extent in zip((x, y, z), settings.size):
         np.maximum(field, -axis, out=field)
         np.maximum(field, axis - extent, out=field)
+    if settings.pockets == "four":
+        from .pockets import validate_regions
+        details["pocket_region_validation"] = validate_regions(field, axes, details["pockets"])
     # Tiny positive isovalue avoids exact-zero degeneracies without measurable scaling.
     level = max(info["spacing_mm"]) * 1e-5
     if not (field.min() < 0 and field.max() > level):

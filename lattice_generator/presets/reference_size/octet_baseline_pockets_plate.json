@@ -1,0 +1,18 @@
+{
+  "pattern": "octet",
+  "size": [
+    43,
+    43,
+    24.324
+  ],
+  "cell-size": 6,
+  "strut-diameter": 1.2,
+  "base-thickness": 0.6,
+  "pockets": "four",
+  "magnet-diameter": 10,
+  "magnet-thickness": 2.7,
+  "pocket-midplane-height": 11.6,
+  "require-exact-bounds": true,
+  "memory-limit-mib": 8192,
+  "output": "../../meshes/reference_size/octet_baseline_pockets_plate.stl"
+}

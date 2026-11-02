@@ -7,7 +7,7 @@ name = "lattice-generator"
 version = "0.1.0"
 description = "Validated millimeter-scale lattice solids for STL printing"
 requires-python = ">=3.11"
-dependencies = ["numpy>=2", "scipy>=1.14", "scikit-image>=0.25", "trimesh>=4.6"]
+dependencies = ["numpy>=2", "scipy>=1.14", "scikit-image>=0.25", "trimesh>=4.6", "fast-simplification==0.2.0", "rtree==1.4.1"]
 
 [project.optional-dependencies]
 test = ["pytest>=8"]

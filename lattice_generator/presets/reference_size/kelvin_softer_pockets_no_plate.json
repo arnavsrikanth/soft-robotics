@@ -1,0 +1,18 @@
+{
+  "pattern": "kelvin",
+  "size": [
+    43,
+    43,
+    24.324
+  ],
+  "cell-size": 8,
+  "strut-diameter": 1.0,
+  "base-thickness": 0,
+  "pockets": "four",
+  "magnet-diameter": 10,
+  "magnet-thickness": 2.7,
+  "pocket-midplane-height": 11.6,
+  "require-exact-bounds": true,
+  "memory-limit-mib": 8192,
+  "output": "../../meshes/reference_size/kelvin_softer_pockets_no_plate.stl"
+}

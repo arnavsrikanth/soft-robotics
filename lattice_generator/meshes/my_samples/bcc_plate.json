@@ -1,0 +1,592 @@
+{
+  "generator_version": "0.1.0",
+  "created_utc": "2026-10-30T00:10:28.019271+00:00",
+  "units": "mm",
+  "settings": {
+    "pattern": "bcc",
+    "size": [
+      43,
+      43,
+      24.324
+    ],
+    "cell-size": 6,
+    "strut-diameter": 1.2,
+    "wall-thickness": null,
+    "base-thickness": 0.6,
+    "resolution": null,
+    "memory-limit-mib": 8192,
+    "pockets": "four",
+    "magnet-diameter": 10,
+    "magnet-thickness": 2.7,
+    "pocket-diameter-clearance": 0.3,
+    "pocket-height-clearance": 0.2,
+    "pocket-wall-thickness": 1.0,
+    "pocket-floor-thickness": 1.0,
+    "pocket-roof-thickness": 1.0,
+    "mesh-above-pockets": null,
+    "pocket-midplane-height": 11.6,
+    "require-exact-bounds": true,
+    "simplify-tolerance": 0.05
+  },
+  "volume_fraction": 0.21805114145869775,
+  "meshing": {
+    "grid_shape": [
+      433,
+      433,
+      246
+    ],
+    "spacing_mm": [
+      0.09976798143851508,
+      0.09976798143851508,
+      0.09968852459016395
+    ],
+    "gyroid_halo": [
+      0,
+      0,
+      0
+    ],
+    "estimated_memory_mib": 4995.549957275391,
+    "estimated_edges_upper_bound": 13520,
+    "struts": 2560,
+    "pockets": {
+      "count": 4,
+      "magnet_diameter_mm": 10,
+      "magnet_thickness_mm": 2.7,
+      "diametral_clearance_mm": 0.3,
+      "height_clearance_mm": 0.2,
+      "cavity_diameter_mm": 10.3,
+      "cavity_height_mm": 2.9000000000000004,
+      "outer_radius_mm": 6.15,
+      "wall_thickness_mm": 1.0,
+      "floor_thickness_mm": 1.0,
+      "roof_thickness_mm": 1.0,
+      "holder_bottom_z_mm": 9.15,
+      "holder_top_z_mm": 14.05,
+      "mesh_above_pockets_mm": 10.274000000000001,
+      "pocket_midplane_height_mm": 11.600000000000001,
+      "total_mesh_height_mm": 24.324,
+      "roof_start_z_mm": 13.05,
+      "holders": [
+        {
+          "center_xy_mm": [
+            10.75,
+            10.75
+          ],
+          "cavity_center_mm": [
+            10.75,
+            10.75,
+            11.600000000000001
+          ],
+          "cavity_bounds_mm": [
+            [
+              5.6,
+              5.6,
+              10.15
+            ],
+            [
+              15.9,
+              15.9,
+              13.05
+            ]
+          ],
+          "holder_bounds_mm": [
+            [
+              4.6,
+              4.6,
+              9.15
+            ],
+            [
+              16.9,
+              16.9,
+              14.05
+            ]
+          ]
+        },
+        {
+          "center_xy_mm": [
+            32.25,
+            10.75
+          ],
+          "cavity_center_mm": [
+            32.25,
+            10.75,
+            11.600000000000001
+          ],
+          "cavity_bounds_mm": [
+            [
+              27.1,
+              5.6,
+              10.15
+            ],
+            [
+              37.4,
+              15.9,
+              13.05
+            ]
+          ],
+          "holder_bounds_mm": [
+            [
+              26.1,
+              4.6,
+              9.15
+            ],
+            [
+              38.4,
+              16.9,
+              14.05
+            ]
+          ]
+        },
+        {
+          "center_xy_mm": [
+            10.75,
+            32.25
+          ],
+          "cavity_center_mm": [
+            10.75,
+            32.25,
+            11.600000000000001
+          ],
+          "cavity_bounds_mm": [
+            [
+              5.6,
+              27.1,
+              10.15
+            ],
+            [
+              15.9,
+              37.4,
+              13.05
+            ]
+          ],
+          "holder_bounds_mm": [
+            [
+              4.6,
+              26.1,
+              9.15
+            ],
+            [
+              16.9,
+              38.4,
+              14.05
+            ]
+          ]
+        },
+        {
+          "center_xy_mm": [
+            32.25,
+            32.25
+          ],
+          "cavity_center_mm": [
+            32.25,
+            32.25,
+            11.600000000000001
+          ],
+          "cavity_bounds_mm": [
+            [
+              27.1,
+              27.1,
+              10.15
+            ],
+            [
+              37.4,
+              37.4,
+              13.05
+            ]
+          ],
+          "holder_bounds_mm": [
+            [
+              26.1,
+              26.1,
+              9.15
+            ],
+            [
+              38.4,
+              38.4,
+              14.05
+            ]
+          ]
+        }
+      ],
+      "pause_guidance": "Pause after the cavity is printed and before the first roof extrusion. Determine the layer from the slicer's actual preview; do not use a rounded layer-number formula."
+    },
+    "pocket_region_validation": {
+      "material_regions": 1,
+      "enclosed_voids": 4,
+      "cavity_centers_in_distinct_enclosed_voids": true
+    },
+    "simplification": {
+      "enabled": true,
+      "input_triangles": 8163276,
+      "tolerance_mm": 0.05,
+      "bounds_tolerance_mm": 0.05,
+      "attempts": [
+        {
+          "retained_fraction": 0.1,
+          "failures": [
+            "Validation failed: Nonmanifold edges or vertex fans detected."
+          ],
+          "output_triangles": 1022852,
+          "bounds_drift_mm": 0.013214560473933545
+        },
+        {
+          "retained_fraction": 0.25,
+          "failures": [
+            "Validation failed: Nonmanifold edges or vertex fans detected."
+          ],
+          "output_triangles": 2212920,
+          "bounds_drift_mm": 0.003537879087765816
+        },
+        {
+          "retained_fraction": 0.5,
+          "failures": [
+            "Validation failed: Nonmanifold edges or vertex fans detected."
+          ],
+          "output_triangles": 4196374,
+          "bounds_drift_mm": 0.0014077019561469228
+        }
+      ],
+      "accepted": false,
+      "output_triangles": 8163276,
+      "reason": "No candidate passed bounds, topology and surface-error checks"
+    }
+  },
+  "phase": {
+    "cell_fractions": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "convention": "strut translation; gyroid coordinate offset in its equation"
+  },
+  "geometric_tolerance_mm": 0.19953596287703015,
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "finite_coordinates": true,
+    "degenerate_triangles": 0,
+    "watertight": true,
+    "consistent_winding": true,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "nonmanifold_vertices": 0,
+    "connected_components": 5,
+    "component_triangle_counts": [
+      7933804,
+      57368,
+      57368,
+      57368,
+      57368
+    ],
+    "material_bodies": 1,
+    "enclosed_cavities": 4,
+    "pocket_measurements": [
+      {
+        "center_mm": [
+          10.75,
+          10.75,
+          11.600000000000001
+        ],
+        "bounds_mm": [
+          [
+            5.600061416625977,
+            5.600061416625977,
+            10.150001525878906
+          ],
+          [
+            15.89993953704834,
+            15.89993953704834,
+            13.049999237060547
+          ]
+        ],
+        "diameter_xy_mm": [
+          10.299878120422363,
+          10.299878120422363
+        ],
+        "height_mm": 2.8999977111816406,
+        "void_volume_mm3": 241.4904757460705,
+        "max_cylinder_surface_error_mm": 0.023706617913449968
+      },
+      {
+        "center_mm": [
+          32.25,
+          10.75,
+          11.600000000000001
+        ],
+        "bounds_mm": [
+          [
+            27.100061416625977,
+            5.600061416625977,
+            10.150001525878906
+          ],
+          [
+            37.39993667602539,
+            15.89993953704834,
+            13.049999237060547
+          ]
+        ],
+        "diameter_xy_mm": [
+          10.299875259399414,
+          10.299878120422363
+        ],
+        "height_mm": 2.8999977111816406,
+        "void_volume_mm3": 241.48997734887584,
+        "max_cylinder_surface_error_mm": 0.023706149262824106
+      },
+      {
+        "center_mm": [
+          10.75,
+          32.25,
+          11.600000000000001
+        ],
+        "bounds_mm": [
+          [
+            5.600061416625977,
+            27.100061416625977,
+            10.150001525878906
+          ],
+          [
+            15.89993953704834,
+            37.39993667602539,
+            13.049999237060547
+          ]
+        ],
+        "diameter_xy_mm": [
+          10.299878120422363,
+          10.299875259399414
+        ],
+        "height_mm": 2.8999977111816406,
+        "void_volume_mm3": 241.48997736563896,
+        "max_cylinder_surface_error_mm": 0.023706149262824106
+      },
+      {
+        "center_mm": [
+          32.25,
+          32.25,
+          11.600000000000001
+        ],
+        "bounds_mm": [
+          [
+            27.100061416625977,
+            27.100061416625977,
+            10.150001525878906
+          ],
+          [
+            37.39993667602539,
+            37.39993667602539,
+            13.049999237060547
+          ]
+        ],
+        "diameter_xy_mm": [
+          10.299875259399414,
+          10.299875259399414
+        ],
+        "height_mm": 2.8999977111816406,
+        "void_volume_mm3": 241.49058900114792,
+        "max_cylinder_surface_error_mm": 0.023705318683949983
+      }
+    ],
+    "bounds_mm": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        43.0,
+        43.0,
+        24.323999404907227
+      ]
+    ],
+    "occupied_size_mm": [
+      43.0,
+      43.0,
+      24.323999404907227
+    ],
+    "bounds_tolerance_mm": 0.001,
+    "volume_mm3": 9806.866658991683,
+    "surface_area_mm2": 28205.93387910611,
+    "vertices": 4079352,
+    "triangles": 8163276
+  },
+  "stl_round_trip_validated": true,
+  "elapsed_seconds": 187.11878110002726,
+  "pockets": {
+    "count": 4,
+    "magnet_diameter_mm": 10,
+    "magnet_thickness_mm": 2.7,
+    "diametral_clearance_mm": 0.3,
+    "height_clearance_mm": 0.2,
+    "cavity_diameter_mm": 10.3,
+    "cavity_height_mm": 2.9000000000000004,
+    "outer_radius_mm": 6.15,
+    "wall_thickness_mm": 1.0,
+    "floor_thickness_mm": 1.0,
+    "roof_thickness_mm": 1.0,
+    "holder_bottom_z_mm": 9.15,
+    "holder_top_z_mm": 14.05,
+    "mesh_above_pockets_mm": 10.274000000000001,
+    "pocket_midplane_height_mm": 11.600000000000001,
+    "total_mesh_height_mm": 24.324,
+    "roof_start_z_mm": 13.05,
+    "holders": [
+      {
+        "center_xy_mm": [
+          10.75,
+          10.75
+        ],
+        "cavity_center_mm": [
+          10.75,
+          10.75,
+          11.600000000000001
+        ],
+        "cavity_bounds_mm": [
+          [
+            5.6,
+            5.6,
+            10.15
+          ],
+          [
+            15.9,
+            15.9,
+            13.05
+          ]
+        ],
+        "holder_bounds_mm": [
+          [
+            4.6,
+            4.6,
+            9.15
+          ],
+          [
+            16.9,
+            16.9,
+            14.05
+          ]
+        ]
+      },
+      {
+        "center_xy_mm": [
+          32.25,
+          10.75
+        ],
+        "cavity_center_mm": [
+          32.25,
+          10.75,
+          11.600000000000001
+        ],
+        "cavity_bounds_mm": [
+          [
+            27.1,
+            5.6,
+            10.15
+          ],
+          [
+            37.4,
+            15.9,
+            13.05
+          ]
+        ],
+        "holder_bounds_mm": [
+          [
+            26.1,
+            4.6,
+            9.15
+          ],
+          [
+            38.4,
+            16.9,
+            14.05
+          ]
+        ]
+      },
+      {
+        "center_xy_mm": [
+          10.75,
+          32.25
+        ],
+        "cavity_center_mm": [
+          10.75,
+          32.25,
+          11.600000000000001
+        ],
+        "cavity_bounds_mm": [
+          [
+            5.6,
+            27.1,
+            10.15
+          ],
+          [
+            15.9,
+            37.4,
+            13.05
+          ]
+        ],
+        "holder_bounds_mm": [
+          [
+            4.6,
+            26.1,
+            9.15
+          ],
+          [
+            16.9,
+            38.4,
+            14.05
+          ]
+        ]
+      },
+      {
+        "center_xy_mm": [
+          32.25,
+          32.25
+        ],
+        "cavity_center_mm": [
+          32.25,
+          32.25,
+          11.600000000000001
+        ],
+        "cavity_bounds_mm": [
+          [
+            27.1,
+            27.1,
+            10.15
+          ],
+          [
+            37.4,
+            37.4,
+            13.05
+          ]
+        ],
+        "holder_bounds_mm": [
+          [
+            26.1,
+            26.1,
+            9.15
+          ],
+          [
+            38.4,
+            38.4,
+            14.05
+          ]
+        ]
+      }
+    ],
+    "pause_guidance": "Pause after the cavity is printed and before the first roof extrusion. Determine the layer from the slicer's actual preview; do not use a rounded layer-number formula."
+  },
+  "dependencies": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-image": "0.26.0",
+    "trimesh": "5.2.0"
+  },
+  "files": {
+    "stl": "C:\\Users\\21arn\\Documents\\CMU\\24-673 Soft Robots\\soft-robotics\\lattice_generator\\meshes\\my_samples\\bcc_plate.stl",
+    "report": "C:\\Users\\21arn\\Documents\\CMU\\24-673 Soft Robots\\soft-robotics\\lattice_generator\\meshes\\my_samples\\bcc_plate.json",
+    "blend": null
+  },
+  "notes": [
+    "STL has no unit metadata; numeric coordinates are millimeters.",
+    "Grid meshing approximates surfaces; actual occupied bounds may be smaller than the clipping box.",
+    "Geometric validation does not establish support-free printability."
+  ]
+}

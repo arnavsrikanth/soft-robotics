@@ -1,0 +1,13 @@
+{
+  "pattern": "diamond",
+  "size": [
+    36,
+    36,
+    18
+  ],
+  "cell-size": 6,
+  "strut-diameter": 1.2,
+  "base-thickness": 0,
+  "pockets": "none",
+  "output": "../../examples/paired/diamond_plain.stl"
+}

@@ -15,9 +15,15 @@ def parser():
     generate = commands.add_parser("generate", help="Generate and validate an STL")
     generate.add_argument("--config", type=Path, help="JSON preset; command-line values take priority")
     generate.add_argument("--pattern")
+    generate.add_argument("--lattice-offset", type=float, nargs=3, metavar=("X", "Y", "Z"),
+                          help="Translate strut lattice in millimeters; box, base, and pockets stay fixed")
     generate.add_argument("--size", type=float, nargs=3, metavar=("WIDTH", "DEPTH", "HEIGHT"))
-    for flag in ("cell-size", "strut-diameter", "wall-thickness", "base-thickness", "resolution", "memory-limit-mib"):
+    generate.add_argument("--pockets", choices=("none", "four"), help="Four sealed cylindrical magnet cavities or none (default)")
+    for flag in ("cell-size", "strut-diameter", "wall-thickness", "base-thickness", "resolution", "memory-limit-mib",
+                 "magnet-diameter", "magnet-thickness", "pocket-diameter-clearance", "pocket-height-clearance",
+                 "pocket-wall-thickness", "pocket-floor-thickness", "pocket-roof-thickness", "mesh-above-pockets", "pocket-midplane-height", "simplify-tolerance"):
         generate.add_argument("--" + flag, type=float)
+    generate.add_argument("--require-exact-bounds", action=argparse.BooleanOptionalAction, default=None)
     generate.add_argument("--output")
     generate.add_argument("--save-blend", help="Optional .blend output filename")
     generate.add_argument("--blender-path", help="Override Blender executable discovery")

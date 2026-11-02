@@ -1,7 +1,7 @@
 #include "Adafruit_MLX90393.h"
 
 Adafruit_MLX90393 sensor = Adafruit_MLX90393();
-#define MLX90393_CS 10
+const unsigned long SAMPLE_INTERVAL_MS = 50;
 
 void setup(void)
 {
@@ -12,25 +12,20 @@ void setup(void)
       delay(10);
   }
 
-  Serial.println("Starting Adafruit MLX90393 Demo");
+  Serial.println("# Starting MLX90393");
 
   Wire1.begin(22, 19);  // SDA, SCL
 
   if (!sensor.begin_I2C(0x18, &Wire1)) {
-    Serial.println("No sensor found ... check your wiring?");
+    Serial.println("# No sensor found ... check your wiring?");
     while (1) { delay(10); }
   }
 
-  // if (! sensor.begin_I2C()) {          // hardware I2C mode, can pass in address & alt Wire
-  // //if (! sensor.begin_SPI(MLX90393_CS)) {  // hardware SPI mode
-  //   Serial.println("No sensor found ... check your wiring?");
-  //   while (1) { delay(10); }
-  // }
-  Serial.println("Found a MLX90393 sensor");
+  Serial.println("# Found a MLX90393 sensor");
 
   sensor.setGain(MLX90393_GAIN_1X);
   // You can check the gain too
-  Serial.print("Gain set to: ");
+  Serial.print("# Gain set to: ");
   switch (sensor.getGain()) {
     case MLX90393_GAIN_1X: Serial.println("1 x"); break;
     case MLX90393_GAIN_1_33X: Serial.println("1.33 x"); break;
@@ -52,6 +47,7 @@ void setup(void)
 
   // Set digital filtering
   sensor.setFilter(MLX90393_FILTER_5);
+  Serial.println("# x_uT,y_uT,z_uT");
 }
 
 void loop(void) {
@@ -59,23 +55,13 @@ void loop(void) {
 
   // get X Y and Z data at once
   if (sensor.readData(&x, &y, &z)) {
-      Serial.print("X: "); Serial.print(x, 4); Serial.println(" uT");
-      Serial.print("Y: "); Serial.print(y, 4); Serial.println(" uT");
-      Serial.print("Z: "); Serial.print(z, 4); Serial.println(" uT");
+      Serial.print(x, 4); Serial.print(',');
+      Serial.print(y, 4); Serial.print(',');
+      Serial.println(z, 4);
   } else {
-      Serial.println("Unable to read XYZ data from the sensor.");
+      Serial.println("# Unable to read XYZ data from the sensor.");
   }
 
-  delay(500);
-
-  /* Or....get a new sensor event, normalized to uTesla */
-  sensors_event_t event;
-  sensor.getEvent(&event);
-  /* Display the results (magnetic field is measured in uTesla) */
-  Serial.print("X: "); Serial.print(event.magnetic.x);
-  Serial.print(" \tY: "); Serial.print(event.magnetic.y);
-  Serial.print(" \tZ: "); Serial.print(event.magnetic.z);
-  Serial.println(" uTesla ");
-
-  delay(500);
+  // Sensor conversion time adds to this interval.
+  delay(SAMPLE_INTERVAL_MS);
 }
